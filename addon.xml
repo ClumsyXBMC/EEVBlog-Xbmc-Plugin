@@ -12,7 +12,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">EEVblog - Electronics Engineering Video Blog</summary>
-	<summary lang="de">EEVblog - Elektrotechnik und Elektronik Video Blog</summary>
+    <summary lang="de">EEVblog - Elektrotechnik und Elektronik Video Blog</summary>
     <description lang="en">The EEVblog is an off-the-cuff video blog and Podcast of interest to anyone involved in electronics design. Electronics professionals, hobbyists, hackers, and makers will find something of interest here. Presented in Dave's unique non-scripted overly enthusiastic style!&#xA;&#xA;Be sure to check out www.eevblog.com !</description>
     <description lang="de">David L. Jones wunderbarer, ungeskripteter Video Blog über Themen aus der Elektronik bzw. Elektrotechnik. Dave's enthusiastischer Stil dürfte Profis, Hacker und Bastler gleichermaßen ansprechen.&#xA;&#xA;Schau auch mal bei www.eevblog.com vorbei !</description>
     <platform>all</platform>
