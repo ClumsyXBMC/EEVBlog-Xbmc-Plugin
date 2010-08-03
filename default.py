@@ -31,7 +31,7 @@ def open_url(url):
   return data
 
 def build_main_directory():
-  image = "http://www.eevblog.com/wp-content/themes/gear/images/ico.big/user.png"
+  image = "icon.png"
   listitem = xbmcgui.ListItem(label = "Episode Listing", iconImage = image, thumbnailImage = image)
   u = sys.argv[0] + "?mode=1"
   xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = listitem, isFolder = True)
