@@ -70,7 +70,7 @@ def play_video(ep_url):
   if not youtube_video_id:
 	xbmc.executebuiltin('Dialog.Close(busydialog)')
 	return
-	
+		
   quality = int(__settings__.getSetting('quality'))
   if quality == 0:
     quality=22 # 720
