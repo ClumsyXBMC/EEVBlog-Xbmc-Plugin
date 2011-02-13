@@ -64,13 +64,13 @@ def play_video(ep_url):
     
   # Ugly hack for a change in the page src from videos 140 onwards. 
   if not youtube_video_id:
-	youtube_video_id = re.compile('src="http://www.youtube.com/embed/(.*?)"').findall(ep_data)
+    youtube_video_id = re.compile('src="http://www.youtube.com/embed/(.*?)"').findall(ep_data)
   
   # Close the busy waiting dialog, if the youtube url wasn't parsed correctly.
   if not youtube_video_id:
-	xbmc.executebuiltin('Dialog.Close(busydialog)')
-	return
-		
+    xbmc.executebuiltin('Dialog.Close(busydialog)')
+    return
+        
   quality = int(__settings__.getSetting('quality'))
   if quality == 0:
     quality=22 # 720
