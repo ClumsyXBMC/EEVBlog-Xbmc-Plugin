@@ -82,15 +82,12 @@ def play_video(ep_url):
   fmt_url_map = urllib.unquote_plus(re.findall('&url_encoded_fmt_stream_map=([^&]+)', video_info_html)[0]).split(',')
     
   for url in fmt_url_map:
-    print url
     video_url = urllib.unquote_plus(url)
     video_url = video_url.replace(" ", "%20").replace("url=", "")
     if (quality == 22) and video_url.endswith('itag=22'):
-      #video_url = url.split('|')[1]
       break
     elif (url.startswith('itag=35')
           or url.endswith('itag=34') or url.endswith('itag=18')):
-      #video_url = url.split('|')[1]
       break
       
   # The following is blatantly borrowed from the really nice youtube plugin. Thanks guys and boo youtube.
