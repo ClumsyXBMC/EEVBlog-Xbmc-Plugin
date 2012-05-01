@@ -39,9 +39,8 @@ def build_main_directory():
 def build_episodes_directory():
   url = 'http://www.eevblog.com/episodes/'
   data = open_url(url)
-  match = re.compile('<body>(.+?)<div class="sociable">', re.DOTALL).findall(data)
-  youtube_url_name = re.compile('<a href ="(.+?)" title="(.+?)">', re.DOTALL).findall(match[0])
-  
+  match = re.compile('<body>(.+?)</body>', re.DOTALL).findall(data)
+  youtube_url_name = re.compile(r'<a href ="(.+?)" title="(EEVblog #.+?)">', re.DOTALL).findall(match[0])
   for ep_url, name in youtube_url_name:
     listitem = xbmcgui.ListItem(label = name, iconImage = "", thumbnailImage = "")
     #listitem.setInfo( type = "Video", infoLabels = { "Title": name, "Director": __plugin__, "Studio": __plugin__, "Genre": "Video Blog", "Plot": plot[0], "Episode": "" } )
@@ -76,7 +75,6 @@ def play_video(ep_url):
     quality=22 # 720
   else:
     quality=35 # 480
-  
   video_info_html = open_url('http://www.youtube.com/get_video_info?video_id=' 
                              + youtube_video_id[0] +'&el=vevo')
   fmt_url_map = urllib.unquote_plus(re.findall('&url_encoded_fmt_stream_map=([^&]+)', video_info_html)[0]).split(',')
