@@ -69,50 +69,13 @@ def play_video(ep_url):
   if len(youtube_video_id) == 0:
     xbmc.executebuiltin('Dialog.Close(busydialog)')
     return
-        
-  quality = int(__settings__.getSetting('quality'))
-  if quality == 0:
-    quality=22 # 720
-  else:
-    quality=35 # 480
-  video_info_html = open_url('http://www.youtube.com/get_video_info?video_id=' 
-                             + youtube_video_id[0] +'&el=vevo')
-  fmt_url_map = urllib.unquote_plus(re.findall('&url_encoded_fmt_stream_map=([^&]+)', video_info_html)[0]).split(',')
-    
-  for url in fmt_url_map:
-    video_url = urllib.unquote_plus(url)
-    video_url = video_url.replace(" ", "%20").replace("url=", "")
-    if (quality == 22) and video_url.endswith('itag=22'):
-      break
-    elif (url.startswith('itag=35')
-          or url.endswith('itag=34') or url.endswith('itag=18')):
-      break
-      
-  # The following is blatantly borrowed from the really nice youtube plugin. Thanks guys and boo youtube.
-  if (video_url.rfind(';') > 0):
-    video_url = video_url[:video_url.rfind(';')]
-  if (video_url.rfind(',') > video_url.rfind('&id=')): 
-    video_url = video_url[:video_url.rfind(',')]
-  elif (video_url.rfind(',') > video_url.rfind('/id/') and video_url.rfind('/id/') > 0):
-    video_url = video_url[:video_url.rfind('/')]
-  if video_url.find("&type") > 0:
-    video_url = video_url[:video_url.find("&type")]
-  pos = video_url.find("://")
-  fpos = video_url.find("fallback_host")
-  if pos > -1 and fpos > -1:
-    host = video_url[pos + 3:]
-    if host.find("/") > -1:
-      host = host[:host.find("/")]
-      fmt_fallback = video_url[fpos + 14:]
-    if fmt_fallback.find("&") > -1:
-      fmt_fallback = fmt_fallback[:fmt_fallback.find("&")]
-      video_url = video_url.replace(host, fmt_fallback)
-      video_url = video_url.replace("fallback_host=" + fmt_fallback, "fallback_host=" + host)
+
+  url = "plugin://plugin.video.youtube/?path=/root/search&action=play_video&videoid="+youtube_video_id[0]
 
   listitem = xbmcgui.ListItem(label = name , iconImage = 'DefaultVideo.png', thumbnailImage = '')
   listitem.setInfo( type = "Video", infoLabels={ "Title": name, "Director": __plugin__, "Studio": __plugin__, "Genre": genre, "Plot": plot, "Episode": int(0)  } )
-  xbmc.Player(xbmc.PLAYER_CORE_DVDPLAYER).play(str(video_url), listitem)
-  xbmc.sleep(200)
+  xbmc.Player().play(item=url, listitem=listitem)
+  #xbmc.sleep(200)
 
 def get_params():
   param=[]
