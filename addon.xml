@@ -2,8 +2,7 @@
 <addon id="plugin.video.eevblog"
        name="EEVblog"
        version="0.2.1"
-       provider-name="Clumsy"
-       language="en">
+       provider-name="Clumsy">
   <requires>
     <import addon="xbmc.python" version="2.0"/>
     <import addon="plugin.video.youtube" version="2.9.2" optional="false" />
@@ -20,5 +19,6 @@
     <description lang="de">David L. Jones wunderbarer, ungeskripteter Video Blog über Themen aus der Elektronik bzw. Elektrotechnik. Dave's enthusiastischer Stil dürfte Profis, Hacker und Bastler gleichermaßen ansprechen.&#xA;&#xA;Schau auch mal bei www.eevblog.com vorbei !</description>
     <description lang="hu">Az EEVblog egy vágatlan videó-blog ami az elektrotechnika után érdeklődők számára szolgál érdekes információkkal. Iparági dolgozók, hobbisták, hackerek és gyártók találhatnak itt érdekes videókat, Dave egyedi és lelkes stílusában előadva!&#xA;&#xA;Mindenképp látogasd meg a www.eevblog.com-ot !</description>
     <platform>all</platform>
+    <language>en</language>
   </extension>
 </addon>
