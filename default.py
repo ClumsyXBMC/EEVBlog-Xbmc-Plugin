@@ -65,7 +65,7 @@ def play_video(ep_url):
     youtube_video_id = re.compile('src="http://www.youtube.com/embed/(.*?)"').findall(ep_data)
   
   # Close the busy waiting dialog, if the youtube url wasn't parsed correctly.
-  if len(youtube_video_id) == 0:
+  if not youtube_video_id:
     xbmc.executebuiltin('Dialog.Close(busydialog)')
     return
 
