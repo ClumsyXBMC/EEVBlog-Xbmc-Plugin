@@ -63,10 +63,8 @@ def play_video(ep_url):
     
   # Ugly hack for a change in the page src from videos 140 onwards. 
   if not youtube_video_id:
-    youtube_video_id = re.compile('src="youtube.com/embed/(.*?)"').findall(ep_data)
+    youtube_video_id = re.compile('youtube.com/embed/(.*?)"').findall(ep_data)
   
-  print youtube_video_id
-
   # Close the busy waiting dialog, if the youtube url wasn't parsed correctly.
   if not youtube_video_id:
     xbmc.executebuiltin('Dialog.Close(busydialog)')
