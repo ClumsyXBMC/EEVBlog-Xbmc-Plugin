@@ -57,25 +57,30 @@ def clean(name):
       
 def play_video(ep_url):
   xbmc.executebuiltin('ActivateWindow(busydialog)')
-  ep_data = open_url(ep_url)
-  plot = re.compile('<div class="info">.+?<p>(.+?)</p>.', re.DOTALL).findall(ep_data)
-  youtube_video_id = re.compile('<param name="movie" value=".*?/v/(.+?)[&\?].').findall(ep_data)
+  try:
+ 
+    ep_data = open_url(ep_url)
+    plot = re.compile('<div class="info">.+?<p>(.+?)</p>.', re.DOTALL).findall(ep_data)
+    youtube_video_id = re.compile('<param name="movie" value=".*?/v/(.+?)[&\?].').findall(ep_data)
     
-  # Ugly hack for a change in the page src from videos 140 onwards. 
-  if not youtube_video_id:
-    youtube_video_id = re.compile('youtube.com/embed/(.*?)"').findall(ep_data)
+    # Ugly hack for a change in the page src from videos 140 onwards. 
+    if not youtube_video_id:
+      youtube_video_id = re.compile('youtube.com/embed/(.*?)"').findall(ep_data)
   
-  # Close the busy waiting dialog, if the youtube url wasn't parsed correctly.
-  if not youtube_video_id:
-    xbmc.executebuiltin('Dialog.Close(busydialog)')
+    # Close the busy waiting dialog, if the youtube url wasn't parsed correctly.
+    if not youtube_video_id:
+      xbmc.executebuiltin('Dialog.Close(busydialog)')
+      return
+
+    url = "plugin://plugin.video.youtube/?path=/root/search&action=play_video&videoid="+youtube_video_id[0]
+
+    listitem = xbmcgui.ListItem(label = name , iconImage = 'DefaultVideo.png', thumbnailImage = '')
+    listitem.setInfo( type = "Video", infoLabels={ "Title": name, "Director": __plugin__, "Studio": __plugin__, "Genre": genre, "Plot": plot, "Episode": int(0)  } )
+  except:
+    xbmc.executebuiltin( "Dialog.Close(busydialog)" )
+    xbmc.executebuiltin('Notification(Error,Something went wrong,2000)')
     return
-
-  url = "plugin://plugin.video.youtube/?path=/root/search&action=play_video&videoid="+youtube_video_id[0]
-
-  listitem = xbmcgui.ListItem(label = name , iconImage = 'DefaultVideo.png', thumbnailImage = '')
-  listitem.setInfo( type = "Video", infoLabels={ "Title": name, "Director": __plugin__, "Studio": __plugin__, "Genre": genre, "Plot": plot, "Episode": int(0)  } )
   xbmc.Player().play(item=url, listitem=listitem)
-  #xbmc.sleep(200)
 
 def get_params():
   param=[]
