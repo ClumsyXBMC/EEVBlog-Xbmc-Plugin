@@ -74,7 +74,7 @@ def play_video(ep_url):
 
     url = "plugin://plugin.video.youtube/?path=/root/search&action=play_video&videoid="+youtube_video_id[0]
 
-    listitem = xbmcgui.ListItem(label = name , iconImage = 'DefaultVideo.png', thumbnailImage = '')
+    listitem = xbmcgui.ListItem(label = name if name else '' , iconImage = 'DefaultVideo.png', thumbnailImage = '')
     listitem.setInfo( type = "Video", infoLabels={ "Title": name, "Director": __plugin__, "Studio": __plugin__, "Genre": genre, "Plot": plot, "Episode": int(0)  } )
   except:
     xbmc.executebuiltin( "Dialog.Close(busydialog)" )
