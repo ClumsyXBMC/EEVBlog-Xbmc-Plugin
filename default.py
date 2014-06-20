@@ -26,6 +26,7 @@ if REMOTE_DBG:
     
 def open_url(url):
   req = urllib2.Request(url)
+  req.add_header("user-agent","Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)")
   content = urllib2.urlopen(req)
   data = content.read()
   content.close()
@@ -59,8 +60,10 @@ def clean(name):
 def play_video(ep_url):
   xbmc.executebuiltin('ActivateWindow(busydialog)')
   try:
- 
-    ep_data = open_url(EEV_URL + ep_url)
+    if ep_url[:22]== EEV_URL:
+        ep_data = open_url(ep_url)
+    else:
+        ep_data = open_url(EEV_URL + ep_url)
     plot = re.compile('<div class="info">.+?<p>(.+?)</p>.', re.DOTALL).findall(ep_data)
     youtube_video_id = re.compile('<param name="movie" value=".*?/v/(.+?)[&\?].').findall(ep_data)
     
