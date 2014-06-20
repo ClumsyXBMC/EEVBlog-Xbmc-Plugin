@@ -1,3 +1,6 @@
+[B|Version 0.2.6[/B]
+
+- Fixes episode listing and playback. Thanks violentmagician.
 [B|Version 0.2.5[/B]
 
 - Fixes video playback. Thanks to Lupul for the fix.
