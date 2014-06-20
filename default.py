@@ -26,6 +26,7 @@ if REMOTE_DBG:
     
 def open_url(url):
   req = urllib2.Request(url)
+  req.add_header("user-agent","Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)")
   content = urllib2.urlopen(req)
   data = content.read()
   content.close()
