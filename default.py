@@ -60,8 +60,10 @@ def clean(name):
 def play_video(ep_url):
   xbmc.executebuiltin('ActivateWindow(busydialog)')
   try:
- 
-    ep_data = open_url(EEV_URL + ep_url)
+    if ep_url[:22]== EEV_URL:
+        ep_data = open_url(ep_url)
+    else:
+        ep_data = open_url(EEV_URL + ep_url)
     plot = re.compile('<div class="info">.+?<p>(.+?)</p>.', re.DOTALL).findall(ep_data)
     youtube_video_id = re.compile('<param name="movie" value=".*?/v/(.+?)[&\?].').findall(ep_data)
     
