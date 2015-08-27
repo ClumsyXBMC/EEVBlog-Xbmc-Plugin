@@ -1,3 +1,6 @@
+[B|Version 0.2.7[/B]
+
+- Fixes the plugin after changes in site layout. Thanks mintsoft.
 [B|Version 0.2.6[/B]
 
 - Fixes episode listing and playback. Thanks violentmagician.
