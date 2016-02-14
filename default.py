@@ -41,7 +41,7 @@ def build_main_directory():
 def build_episodes_directory():
   url = EEV_URL + '/episodes/'
   data = open_url(url)
-  match = re.compile('<body>(.+?)</body>', re.DOTALL).findall(data)
+  match = re.compile('<body[^>]*>(.+?)</body>', re.DOTALL).findall(data)
   youtube_url_name = re.compile(r'<a href.?="(.+?)" title="(EEVblog #.+?)">', re.IGNORECASE).findall(match[0])
   for ep_url, name in youtube_url_name:
     listitem = xbmcgui.ListItem(label = name, iconImage = "", thumbnailImage = "")
